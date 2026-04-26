@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourav yadav | Java Developer & Data Analyst</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    :root {
+        --bg: #0a0c10;
+        --surface: #11161c;
+        --card: #1a202c;
+        --text: #e2e8f0;
+        --text-muted: #94a3b8;
+        --primary: #3b82f6;
+        --primary-dark: #2563eb;
+        --border: #2d3748;
+        --success: #10b981;
+    }
+
+    body.light {
+        --bg: #f8fafc;
+        --surface: #ffffff;
+        --card: #f1f5f9;
+        --text: #0f172a;
+        --text-muted: #475569;
+        --border: #e2e8f0;
+    }
+
+    body {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        transition: background 0.3s, color 0.2s;
+        scroll-behavior: smooth;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+
+    /* Navbar */
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: var(--surface);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        z-index: 1000;
+        padding: 1rem 0;
+    }
+
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        font-size: 1.8rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--primary), #a855f7);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        font-weight: 500;
+        color: var(--text);
+        transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+        color: var(--primary);
+    }
+
+    .theme-toggle,
+    .mobile-menu {
+        background: none;
+        border: none;
+        font-size: 1.3rem;
+        cursor: pointer;
+        color: var(--text);
+    }
+
+    .mobile-menu {
+        display: none;
+    }
+
+    /* Hero */
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding-top: 5rem;
+    }
+
+    .hero-content {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 3rem;
+        align-items: center;
+    }
+
+    .hero-text h1 {
+        font-size: 3rem;
+        font-weight: 800;
+    }
+
+    .highlight {
+        background: linear-gradient(135deg, var(--primary), #a855f7);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .typing-container {
+        font-size: 1.6rem;
+        font-weight: 600;
+        margin: 1rem 0;
+        color: var(--primary);
+    }
+
+    .cursor {
+        animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+
+        0%,
+        100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0;
+        }
+    }
+
+    .avatar-circle {
+        width: 280px;
+        height: 280px;
+        background: linear-gradient(135deg, var(--primary), #a855f7);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 6rem;
+        color: white;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 0.8rem 1.8rem;
+        border-radius: 2rem;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    .btn-primary {
+        background: var(--primary);
+        color: white;
+    }
+
+    .btn-outline {
+        border: 2px solid var(--primary);
+        color: var(--primary);
+    }
+
+    .btn-primary:hover,
+    .btn-outline:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px -5px var(--primary);
+    }
+
+    /* Sections */
+    section {
+        padding: 5rem 0;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .section-title span {
+        background: linear-gradient(135deg, var(--primary), #a855f7);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .about-card,
+    .contact-form {
+        background: var(--card);
+        padding: 2rem;
+        border-radius: 1.5rem;
+        border: 1px solid var(--border);
+    }
+
+    .about-info {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .skills-grid,
+    .services-grid,
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.8rem;
+    }
+
+    .skill-card,
+    .service-card,
+    .project-card {
+        background: var(--card);
+        padding: 1.5rem;
+        border-radius: 1rem;
+        border: 1px solid var(--border);
+        transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .skill-card:hover,
+    .project-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--primary);
+    }
+
+    .skill-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.8rem;
+    }
+
+    .progress-bar {
+        background: var(--border);
+        border-radius: 1rem;
+        height: 8px;
+        overflow: hidden;
+    }
+
+    .progress {
+        width: 0;
+        height: 8px;
+        background: linear-gradient(90deg, var(--primary), #a855f7);
+        border-radius: 1rem;
+        transition: width 1s ease-out;
+    }
+
+    .service-card {
+        text-align: center;
+    }
+
+    .service-card i {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+    }
+
+    .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 1rem 0;
+    }
+
+    .tech-badge {
+        background: rgba(59, 130, 246, 0.2);
+        color: var(--primary);
+        padding: 0.2rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+    }
+
+    .project-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .btn-small {
+        padding: 0.4rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    /* Form */
+    .form-group {
+        margin-bottom: 1.2rem;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        padding: 0.8rem;
+        border-radius: 0.8rem;
+        border: 1px solid var(--border);
+        background: var(--bg);
+        color: var(--text);
+        font-family: inherit;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        border: none;
+        cursor: pointer;
+    }
+
+    .alert {
+        padding: 0.8rem;
+        border-radius: 0.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .alert-success {
+        background: rgba(16, 185, 129, 0.2);
+        border-left: 3px solid var(--success);
+    }
+
+    .alert-error {
+        background: rgba(239, 68, 68, 0.2);
+        border-left: 3px solid #ef4444;
+    }
+
+    footer {
+        text-align: center;
+        padding: 2rem;
+        border-top: 1px solid var(--border);
+    }
+
+    .social-icons a {
+        color: var(--text-muted);
+        font-size: 1.8rem;
+        margin: 0 0.8rem;
+        transition: 0.3s;
+    }
+
+    .social-icons a:hover {
+        color: var(--primary);
+    }
+
+    @media (max-width: 768px) {
+        .hero-content {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background: var(--surface);
+            padding: 1rem;
+        }
+
+        .nav-links.active {
+            display: flex;
+        }
+
+        .mobile-menu {
+            display: block;
+        }
+
+        .about-info {
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+        }
+    }
+</style>
+
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">Gourav<span>yadav</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Dark mode"><i class="fas fa-moon"></i></button>
+            <button class="mobile-menu" id="mobileMenu"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Hi, I'm <span class="highlight">Gourav yadav</span></h1>
+                <div class="typing-container">
+                    <span id="typed-text"></span><span class="cursor">|</span>
+                </div>
+                <p>B.Tech CSE 3rd Year | Data Analytics Certified | Java & Python Developer</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Hire Me</a>
+                    <a href="#projects" class="btn btn-outline">View Projects</a>
+                </div>
+            </div>
+            <div class="hero-avatar">
+                <div class="avatar-circle">
+                    <i class="fas fa-code"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About <span>Me</span></h2>
+            <div class="about-card">
+                <p>Motivated and detail-oriented B.Tech (Computer Science Engineering) 3rd year student with a strong
+                    foundation in programming and data analytics. Certified in Data Analytics, with hands-on experience
+                    in Java, Python, and web technologies including HTML and CSS. Skilled in problem-solving, logical
+                    thinking, and developing efficient solutions. Eager to apply technical knowledge in real-world
+                    projects.</p>
+                <div class="about-info">
+                    <div><i class="fas fa-map-marker-alt"></i> Jaipur, India</div>
+                    <div><i class="fas fa-envelope"></i> ydasratkumar@gmail.com</div>
+                    <div><i class="fas fa-graduation-cap"></i> Rajasthan University (2023-2027)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills with progress bars -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Technical <span>Skills</span></h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-info"><span>Java (OOP)</span><span>85%</span></div>
+                    <div class="progress-bar">
+                        <div class="progress" data-width="85"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-info"><span>Python</span><span>80%</span></div>
+                    <div class="progress-bar">
+                        <div class="progress" data-width="80"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-info"><span>HTML/CSS</span><span>90%</span></div>
+                    <div class="progress-bar">
+                        <div class="progress" data-width="90"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-info"><span>JavaScript</span><span>78%</span></div>
+                    <div class="progress-bar">
+                        <div class="progress" data-width="78"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-info"><span>Data Analytics</span><span>70%</span></div>
+                    <div class="progress-bar">
+                        <div class="progress" data-width="70"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-info"><span>Problem Solving</span><span>82%</span></div>
+                    <div class="progress-bar">
+                        <div class="progress" data-width="82"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">What I <span>Offer</span></h2>
+            <div class="services-grid">
+                <div class="service-card"><i class="fas fa-laptop-code"></i>
+                    <h3>Web Development</h3>
+                    <p>Responsive, modern websites with HTML, CSS, JS</p>
+                </div>
+                <div class="service-card"><i class="fab fa-java"></i>
+                    <h3>Java Solutions</h3>
+                    <p>OOP based applications, Swing GUIs, backend logic</p>
+                </div>
+                <div class="service-card"><i class="fas fa-chart-line"></i>
+                    <h3>Data Analytics</h3>
+                    <p>Data cleaning, visualisation, insights using Python</p>
+                </div>
+                <div class="service-card"><i class="fas fa-mobile-alt"></i>
+                    <h3>UI/UX Design</h3>
+                    <p>Clean interfaces, smooth animations, user-first design</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects (dynamic from resume) -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Featured <span>Projects</span></h2>
+            <div class="projects-grid" id="projectsGrid"></div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In <span>Touch</span></h2>
+            <div class="contact-form">
+                <div id="formMessage"></div>
+                <form id="contactForm">
+                    <div class="form-group"><input type="text" id="name" placeholder="Your Name" required></div>
+                    <div class="form-group"><input type="email" id="email" placeholder="Your Email" required></div>
+                    <div class="form-group"><textarea rows="5" id="message" placeholder="Your Message"
+                            required></textarea></div>
+                    <button type="submit" class="btn btn-primary">Send Message <i
+                            class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-icons">
+            <a href="https://github.com/yashrajkumar" target="_blank" id="githubLink"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/yashrajkumar" target="_blank" id="linkedinLink"><i
+                    class="fab fa-linkedin"></i></a>
+        </div>
+        <p>© 2026 Gourav yadav | Built with ❤️</p>
+    </footer>
+
+    <script>// Typing effect
+        const roles = ["Java Developer", "Data Analyst", "Problem Solver", "Web Creator"];
+        let i = 0, j = 0;
+        const typedSpan = document.getElementById("typed-text");
+        function typeEffect() {
+            if (j < roles[i].length) {
+                typedSpan.textContent += roles[i].charAt(j);
+                j++;
+                setTimeout(typeEffect, 100);
+            } else {
+                setTimeout(eraseEffect, 1500);
+            }
+        }
+        function eraseEffect() {
+            if (j > 0) {
+                typedSpan.textContent = roles[i].substring(0, j - 1);
+                j--;
+                setTimeout(eraseEffect, 50);
+            } else {
+                i = (i + 1) % roles.length;
+                setTimeout(typeEffect, 200);
+            }
+        }
+        typeEffect();
+
+        // Progress bars on scroll
+        const progressBars = document.querySelectorAll('.progress');
+        function animateProgress() {
+            progressBars.forEach(bar => {
+                const rect = bar.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 50 && !bar.style.width) {
+                    const width = bar.getAttribute('data-width');
+                    bar.style.width = width + '%';
+                }
+            });
+        }
+        window.addEventListener('scroll', animateProgress);
+        animateProgress();
+
+        // Projects data (extracted from resume)
+        const projects = [
+            { title: "To-Do List App", desc: "Task manager with Add, Delete, Mark complete. Built with Java and JavaScript (basic UI).", tech: ["Java", "JavaScript", "HTML/CSS"], demo: "#", code: "https://github.com/yashrajkumar/todo-app" },
+            { title: "Student Management System", desc: "Java OOP based system to add, search, delete students. Console + Swing version.", tech: ["Java", "OOP", "Swing"], demo: "#", code: "https://github.com/yashrajkumar/student-mgmt" },
+            { title: "Simple Calculator (GUI)", desc: "Arithmetic operations using Java Swing with clean interface.", tech: ["Java", "Swing", "Event Handling"], demo: "#", code: "https://github.com/yashrajkumar/calculator" },
+            { title: "Responsive Web Pages", desc: "Modern, responsive websites using HTML5, CSS3 Flex/Grid, and animations.", tech: ["HTML5", "CSS3", "JS"], demo: "#", code: "https://github.com/yashrajkumar/web-project" }
+        ];
+
+        function renderProjects() {
+            const grid = document.getElementById('projectsGrid');
+            grid.innerHTML = projects.map(p => `
+    <div class="project-card">
+      <h3>${p.title}</h3>
+      <p>${p.desc}</p>
+      <div class="project-tech">${p.tech.map(t => `<span class="tech-badge">${t}</span>`).join('')}</div>
+      <div class="project-buttons">
+        <a href="${p.demo}" class="btn btn-primary btn-small" target="_blank">Live Demo</a>
+        <a href="${p.code}" class="btn btn-outline btn-small" target="_blank">GitHub Code</a>
+      </div>
+    </div>
+  `).join('');
+        }
+        renderProjects();
+
+        // Dark mode toggle
+        const themeToggle = document.getElementById('themeToggle');
+        if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light');
+            localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+        });
+
+        // Mobile menu
+        const mobileBtn = document.getElementById('mobileMenu');
+        const navLinks = document.querySelector('.nav-links');
+        mobileBtn.addEventListener('click', () => navLinks.classList.toggle('active'));
+
+        // Contact form submission to backend
+        const form = document.getElementById('contactForm');
+        const msgDiv = document.getElementById('formMessage');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            msgDiv.innerHTML = '<div class="alert">Sending...</div>';
+            try {
+                const res = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, message })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    msgDiv.innerHTML = '<div class="alert alert-success">✅ Message sent successfully!</div>';
+                    form.reset();
+                } else {
+                    msgDiv.innerHTML = `<div class="alert alert-error">❌ ${data.error || 'Failed'}</div>`;
+                }
+            } catch (err) {
+                msgDiv.innerHTML = '<div class="alert alert-error">Network error. Try again later.</div>';
+            }
+        });</script>
+</body>
+
+</html>
